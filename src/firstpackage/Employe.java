@@ -52,5 +52,11 @@ public class Employe extends Personne{
         this.commission = commission;
     }
     
+    public double salaire_annuel(double salaire){
+        return salaire * 12;
+    }
     
+    public double commission_annuelle(double salaire,float taux){
+        return (salaire * taux ) * 12;
+    }
 }

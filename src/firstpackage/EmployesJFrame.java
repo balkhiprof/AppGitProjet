@@ -203,6 +203,11 @@ public class EmployesJFrame extends javax.swing.JFrame {
         btnSalaireAnnuel.setBackground(new java.awt.Color(255, 102, 102));
         btnSalaireAnnuel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalaireAnnuel.setText("Salaire Annuel");
+        btnSalaireAnnuel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalaireAnnuelActionPerformed(evt);
+            }
+        });
 
         txtSalaireAnnuel.setBackground(new java.awt.Color(0, 0, 0));
         txtSalaireAnnuel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -212,6 +217,11 @@ public class EmployesJFrame extends javax.swing.JFrame {
         btnCommissionAnnuelle.setBackground(new java.awt.Color(255, 102, 102));
         btnCommissionAnnuelle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCommissionAnnuelle.setText("Commission annuelle");
+        btnCommissionAnnuelle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCommissionAnnuelleActionPerformed(evt);
+            }
+        });
 
         txtCommissionAnnuelle.setBackground(new java.awt.Color(0, 0, 0));
         txtCommissionAnnuelle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -300,6 +310,55 @@ public class EmployesJFrame extends javax.swing.JFrame {
         txtCommissionAnnuelle.setText(null);
         
     }//GEN-LAST:event_btnNouveauActionPerformed
+
+    private void btnSalaireAnnuelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalaireAnnuelActionPerformed
+        Employe e ;
+        String status,nom,prenom,tel,email,salaire,commission;
+        status = txtStatut.getText();
+        nom = txtNom.getText();
+        prenom = txtPrenom.getText();
+        tel = txtTel.getText();
+        email = txtEmail.getText();
+        salaire = txtSalaire.getText();
+        commission = txtCommission.getText();
+        double salaire_annuel;
+        if (email.isEmpty()){
+            e = new Employe(status, nom, prenom, tel, Double.parseDouble(salaire), Double.parseDouble(commission));
+            salaire_annuel = e.salaire_annuel(Double.parseDouble(salaire));
+            txtSalaireAnnuel.setText(String.valueOf(salaire_annuel));
+        }else{
+            e = new Employe(status, nom, prenom, tel, email, Double.parseDouble(salaire), Double.parseDouble(commission));
+            salaire_annuel = e.salaire_annuel(Double.parseDouble(salaire));
+            txtSalaireAnnuel.setText(String.valueOf(salaire_annuel));
+        }
+    }//GEN-LAST:event_btnSalaireAnnuelActionPerformed
+
+    private void btnCommissionAnnuelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommissionAnnuelleActionPerformed
+        if (rbSalaireEtCommission.isSelected()){
+            String salaire,commission;
+            salaire = txtSalaire.getText();
+            commission = txtCommission.getText();
+            double comm = Double.parseDouble(salaire) * Double.parseDouble(commission);
+            Employe e = new Employe(txtStatut.getText(), txtNom.getText(), 
+                    txtPrenom.getText(), txtTel.getText(),
+                    txtEmail.getText(), Double.parseDouble(salaire),
+                    Double.parseDouble(commission));
+            double comm_annuelle = e.commission_annuelle(Double.parseDouble(salaire)
+                    ,Float.parseFloat(commission));
+            txtCommissionAnnuelle.setText(String.valueOf(comm_annuelle));            
+        }
+         if (rbSalaireSansCommission.isSelected()){
+            String salaire,commission;
+            salaire = txtSalaire.getText();
+            //commission = txtCommission.getText();
+            double comm = Double.parseDouble(salaire) * 0;
+            Employe e = new Employe(txtStatut.getText(), txtNom.getText(), 
+                    txtPrenom.getText(), txtTel.getText(),
+                    txtEmail.getText(), Double.parseDouble(salaire),0);
+            double comm_annuelle = e.commission_annuelle(Double.parseDouble(salaire),0);
+            txtCommissionAnnuelle.setText(String.valueOf(comm_annuelle));            
+        }
+    }//GEN-LAST:event_btnCommissionAnnuelleActionPerformed
 
     /**
      * @param args the command line arguments
