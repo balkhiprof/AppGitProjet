@@ -194,6 +194,11 @@ public class EmployesJFrame extends javax.swing.JFrame {
         btnNouveau.setBackground(new java.awt.Color(255, 102, 102));
         btnNouveau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNouveau.setText("Nouveau");
+        btnNouveau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNouveauActionPerformed(evt);
+            }
+        });
 
         btnSalaireAnnuel.setBackground(new java.awt.Color(255, 102, 102));
         btnSalaireAnnuel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -213,9 +218,11 @@ public class EmployesJFrame extends javax.swing.JFrame {
         txtCommissionAnnuelle.setForeground(new java.awt.Color(255, 255, 255));
         txtCommissionAnnuelle.setText("txtCommissionAnnuelle");
 
+        buttonGroup1.add(rbSalaireEtCommission);
         rbSalaireEtCommission.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         rbSalaireEtCommission.setText("Salaire avec commission");
 
+        buttonGroup1.add(rbSalaireSansCommission);
         rbSalaireSansCommission.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         rbSalaireSansCommission.setText("Salaire sans commisison");
 
@@ -280,6 +287,19 @@ public class EmployesJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNouveauActionPerformed
+        txtNom.setText(null);
+        txtPrenom.setText(null);
+        txtTel.setText(null);
+        txtEmail.setText(null);
+        txtSalaire.setText(null);
+        txtStatut.setText(null);
+        txtSalaireAnnuel.setText(null);
+        txtCommission.setText(null);
+        txtCommissionAnnuelle.setText(null);
+        
+    }//GEN-LAST:event_btnNouveauActionPerformed
 
     /**
      * @param args the command line arguments
